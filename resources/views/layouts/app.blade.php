@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>Agro Jabar</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,11 +26,11 @@
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     @yield('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-yellow sidebar-mini">
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
@@ -37,7 +38,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>InfyOm</b>
+                <b>Agro Jabar</b>
             </a>
 
             <!-- Header Navbar -->
@@ -100,7 +101,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2018 <a href="#">Agro Jabar</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -120,7 +121,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
+                    Agro Jabar
                 </a>
             </div>
 
