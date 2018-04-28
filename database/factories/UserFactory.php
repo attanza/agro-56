@@ -51,3 +51,18 @@ $factory->define(App\Models\Vendor::class, function (Faker $faker) {
         'no_telpon_penanggung_jawab' => $faker->e164PhoneNumber,
     ];
 });
+
+$factory->define(App\Models\Penggarap::class, function (Faker $faker) {
+    return [
+        'nip' => str_random(15),
+        'nama' => $faker->name,
+        'ktp' => str_random(15),
+        'kk' => str_random(15),
+        'jenis_kelamin' => 'Pria',
+        'status_pernikahan' => 'Menikah',
+        'telpon' => $faker->e164PhoneNumber,
+        'email' => $faker->safeEmail,
+        'status' => 'Aktif',
+        'alamat' => $faker->streetAddress,
+    ];
+});

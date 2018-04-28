@@ -15,3 +15,7 @@
     <a href="{!! route('vendors.index') !!}"><i class="fa fa-edit"></i><span>Vendor</span></a>
 </li>
 
+<li class="{{ Request::is('penggaraps*') ? 'active' : '' }}">
+    <a href="{!! route('penggaraps.index') !!}"><i class="fa fa-edit"></i><span>Penggarap</span></a>
+</li>
+

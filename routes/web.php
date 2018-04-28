@@ -29,3 +29,5 @@ Route::resource('jenisSaprotans', 'JenisSaprotanController');
 Route::resource('saprotans', 'SaprotanController');
 
 Route::resource('vendors', 'VendorController');
+
+Route::resource('penggaraps', 'PenggarapController');
