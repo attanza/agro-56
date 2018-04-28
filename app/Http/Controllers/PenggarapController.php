@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PenggarapDataTable;
-use App\Http\Requests;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreatePenggarapRequest;
 use App\Http\Requests\UpdatePenggarapRequest;
 use App\Repositories\PenggarapRepository;
+use App\Traits\SaveFileTrait;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class PenggarapController extends AppBaseController
 {
+    use SaveFileTrait;
+
     /** @var  PenggarapRepository */
     private $penggarapRepository;
 
@@ -54,6 +56,9 @@ class PenggarapController extends AppBaseController
         $input = $request->all();
 
         $penggarap = $this->penggarapRepository->create($input);
+        $this->checkFile($request, 'photo', 'penggarap', $penggarap);
+        $this->checkFile($request, 'ktp_file', 'penggarap', $penggarap);
+        $this->checkFile($request, 'kk_file', 'penggarap', $penggarap);
 
         Flash::success('Penggarap saved successfully.');
 
@@ -119,7 +124,9 @@ class PenggarapController extends AppBaseController
         }
 
         $penggarap = $this->penggarapRepository->update($request->all(), $id);
-
+        $this->checkFile($request, 'photo', 'penggarap', $penggarap);
+        $this->checkFile($request, 'ktp_file', 'penggarap', $penggarap);
+        $this->checkFile($request, 'kk_file', 'penggarap', $penggarap);
         Flash::success('Penggarap updated successfully.');
 
         return redirect(route('penggaraps.index'));

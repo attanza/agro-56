@@ -19,3 +19,7 @@
     <a href="{!! route('penggaraps.index') !!}"><i class="fa fa-edit"></i><span>Penggarap</span></a>
 </li>
 
+<li class="{{ Request::is('pasangans*') ? 'active' : '' }}">
+    <a href="{!! route('pasangans.index') !!}"><i class="fa fa-edit"></i><span>Pasangans</span></a>
+</li>
+

@@ -31,3 +31,5 @@ Route::resource('saprotans', 'SaprotanController');
 Route::resource('vendors', 'VendorController');
 
 Route::resource('penggaraps', 'PenggarapController');
+
+Route::resource('pasangans', 'PasanganController');

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Penggarap
+            Pasangan
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($penggarap, ['route' => ['penggaraps.update', $penggarap->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
+                   {!! Form::model($pasangan, ['route' => ['pasangans.update', $pasangan->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
-                        @include('penggaraps.fields')
+                        @include('pasangans.fields')
 
                    {!! Form::close() !!}
                </div>

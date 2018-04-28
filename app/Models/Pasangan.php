@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Penggarap",
- *      required={"nip", "nama", "ktp", "kk", "jenis_kelamin", "status_pernikahan", "telpon", "status", "alamat"},
+ *      definition="Pasangan",
+ *      required={"penggarap_id", "nama", "ktp", "jenis_kelamin", "no_surat_nikah"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,9 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nip",
- *          description="nip",
- *          type="string"
+ *          property="penggarap_id",
+ *          description="penggarap_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="nama",
@@ -36,23 +37,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="kk",
- *          description="kk",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="kk_file",
- *          description="kk_file",
- *          type="string"
- *      ),
- *      @SWG\Property(
  *          property="jenis_kelamin",
  *          description="jenis_kelamin",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="status_pernikahan",
- *          description="status_pernikahan",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -71,13 +57,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="status",
- *          description="status",
+ *          property="no_surat_nikah",
+ *          description="no_surat_nikah",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="alamat",
- *          description="alamat",
+ *          property="surat_nikah_file",
+ *          description="surat_nikah_file",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -94,28 +80,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Penggarap extends Model
+class Pasangan extends Model
 {
     use SoftDeletes;
 
-    public $table = 'penggaraps';
+    public $table = 'pasangans';
+
+    protected $with = ['pasangan:id,nama'];
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'nip',
+        'penggarap_id',
         'nama',
         'ktp',
         'ktp_file',
-        'kk',
-        'kk_file',
         'jenis_kelamin',
-        'status_pernikahan',
         'telpon',
         'email',
         'photo',
-        'status',
-        'alamat',
+        'no_surat_nikah',
+        'surat_nikah_file',
     ];
 
     /**
@@ -124,19 +109,16 @@ class Penggarap extends Model
      * @var array
      */
     protected $casts = [
-        'nip' => 'string',
+        'penggarap_id' => 'integer',
         'nama' => 'string',
         'ktp' => 'string',
         'ktp_file' => 'string',
-        'kk' => 'string',
-        'kk_file' => 'string',
         'jenis_kelamin' => 'string',
-        'status_pernikahan' => 'string',
         'telpon' => 'string',
         'email' => 'string',
         'photo' => 'string',
-        'status' => 'string',
-        'alamat' => 'string',
+        'no_surat_nikah' => 'string',
+        'surat_nikah_file' => 'string',
     ];
 
     /**
@@ -145,23 +127,21 @@ class Penggarap extends Model
      * @var array
      */
     public static $rules = [
-        'nip' => 'required|unique:penggaraps',
+        'penggarap_id' => 'required|integer',
         'nama' => 'required|max:50',
-        'ktp' => 'required|min:5|max:30|unique:penggaraps',
+        'ktp' => 'required|max:25|unique:pasangans',
         'ktp_file' => 'nullable',
-        'kk' => 'required|min:5|max:30|unique:penggaraps',
-        'kk_file' => 'nullable',
         'jenis_kelamin' => 'required|max:15',
-        'status_pernikahan' => 'required|max:15',
-        'telpon' => 'required|max:30|unique:penggaraps',
+        'telpon' => 'nullable|max:30',
         'email' => 'nullable|email',
         'photo' => 'nullable',
-        'status' => 'required|max:15',
-        'alamat' => 'required',
+        'no_surat_nikah' => 'required|max:30|unique:pasangans',
+        'surat_nikah_file' => 'nullable',
     ];
 
     public function pasangan()
     {
-        return $this->hasOne('App\Models\Pasangan');
+        return $this->belongsTo('App\Models\Penggarap', 'penggarap_id');
     }
+
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Penggarap;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePenggarapRequest extends FormRequest
+class UpdatePasanganRequest extends FormRequest
 {
 
     /**
@@ -26,19 +25,16 @@ class UpdatePenggarapRequest extends FormRequest
     public function rules()
     {
         return [
-            'nip' => 'required|unique:penggaraps,nip,' . $this->penggarap,
+            'penggarap_id' => 'required|integer',
             'nama' => 'required|max:50',
-            'ktp' => 'required|min:5|max:30|unique:penggaraps,ktp,' . $this->penggarap,
+            'ktp' => 'required|max:25|unique:pasangans,ktp,' . $this->pasangan,
             'ktp_file' => 'nullable',
-            'kk' => 'required|min:5|max:30|unique:penggaraps,kk,' . $this->penggarap,
-            'kk_file' => 'nullable',
             'jenis_kelamin' => 'required|max:15',
-            'status_pernikahan' => 'required|max:15',
-            'telpon' => 'required|max:30|unique:penggaraps,telpon,' . $this->penggarap,
+            'telpon' => 'nullable|max:30',
             'email' => 'nullable|email',
             'photo' => 'nullable',
-            'status' => 'required|max:15',
-            'alamat' => 'required',
+            'no_surat_nikah' => 'required|max:30|unique:pasangans,no_surat_nikah,' . $this->pasangan,
+            'surat_nikah_file' => 'nullable',
         ];
     }
 }

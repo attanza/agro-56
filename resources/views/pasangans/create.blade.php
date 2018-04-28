@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Penggarap
+            Pasangan
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'penggaraps.store', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'pasangans.store', 'enctype' => 'multipart/form-data']) !!}
 
-                        @include('penggaraps.fields')
+                        @include('pasangans.fields')
 
                     {!! Form::close() !!}
                 </div>
