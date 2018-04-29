@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,5 +34,16 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo('App\Models\Role', 'role_id');
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        if ($value == null) {
+            return asset('images/male.png');
+        } elseif (!Storage::disk('local')->exists($value)) {
+            return asset('images/male.png');
+        } else {
+            return asset(Storage::url($value));
+        }
     }
 }

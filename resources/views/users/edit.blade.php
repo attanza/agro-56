@@ -8,10 +8,10 @@
    </section>
    <div class="content">
        @include('adminlte-templates::common.errors')
-       <div class="box box-primary">
+       <div class="box box-warning">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+                   {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch','enctype' => 'multipart/form-data']) !!}
 
                         @include('users.fields')
 

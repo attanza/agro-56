@@ -31,12 +31,12 @@ trait GlobalTrait
         }
     }
 
-    public function deletePhotoIfExists($path, $filename)
-    {
-        if (Storage::disk('local')->exists($path.$filename)) {
-            Storage::delete($path.$filename);
-        }
-    }
+    // public function deletePhotoIfExists($path, $filename)
+    // {
+    //     if (Storage::disk('local')->exists($path.$filename)) {
+    //         Storage::delete($path.$filename);
+    //     }
+    // }
 
     public function storeGetCache($model, $keyName, $key)
     {

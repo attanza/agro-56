@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\UserDataTable;
-use App\Http\Requests;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Repositories\UserRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 use App\Models\Role;
+use App\Repositories\UserRepository;
+use App\Traits\GlobalTrait;
+use App\Traits\SaveFileTrait;
+use Flash;
+use Illuminate\Http\Request;
+use Response;
 
 class UserController extends AppBaseController
 {
+    use SaveFileTrait, GlobalTrait;
+
     /** @var  UserRepository */
     private $userRepository;
 
@@ -58,7 +62,13 @@ class UserController extends AppBaseController
         $password = bcrypt($randomPassord);
         $input['password'] = $password;
         $user = $this->userRepository->create($input);
-        Flash::success('User saved successfully.');
+        $this->checkFile($request, 'photo', 'user', $user);
+        $user->save();
+        // Save Activity
+        $activity = "Menambahkan User $user->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
+        // TODO Send email
         return redirect(route('users.index'));
     }
 
@@ -72,13 +82,10 @@ class UserController extends AppBaseController
     public function show($id)
     {
         $user = $this->userRepository->findWithoutFail($id);
-
         if (empty($user)) {
-            Flash::error('User not found');
-
+            Flash::error('User tidak ditemukan');
             return redirect(route('users.index'));
         }
-
         return view('users.show')->with('user', $user);
     }
 
@@ -93,13 +100,10 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->findWithoutFail($id);
         $roles = Role::select('id', 'nama')->orderBy('nama')->get();
-
         if (empty($user)) {
-            Flash::error('User not found');
-
+            Flash::error('User tidak ditemukan');
             return redirect(route('users.index'));
         }
-
         return view('users.edit')->with('user', $user)->withRoles($roles);
     }
 
@@ -114,17 +118,16 @@ class UserController extends AppBaseController
     public function update($id, UpdateUserRequest $request)
     {
         $user = $this->userRepository->findWithoutFail($id);
-
         if (empty($user)) {
             Flash::error('User not found');
-
             return redirect(route('users.index'));
         }
-
         $user = $this->userRepository->update($request->all(), $id);
-
-        Flash::success('User updated successfully.');
-
+        $this->checkFile($request, 'photo', 'user', $user);
+        $user->save();
+        $activity = "Memperbaharui User $user->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
         return redirect(route('users.index'));
     }
 
@@ -135,20 +138,18 @@ class UserController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $user = $this->userRepository->findWithoutFail($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
-
+            Flash::error('User tidak ditemukan');
             return redirect(route('users.index'));
         }
-
+        $activity = "Menghapus User $user->name";
+        $this->saveActivity($request, $activity);
         $this->userRepository->delete($id);
-
-        Flash::success('User deleted successfully.');
-
+        Flash::success(config('agro.form_update_success'));
         return redirect(route('users.index'));
     }
 }
