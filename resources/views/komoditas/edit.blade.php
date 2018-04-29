@@ -8,7 +8,7 @@
    </section>
    <div class="content">
        @include('adminlte-templates::common.errors')
-       <div class="box box-primary">
+       <div class="box box-warning">
            <div class="box-body">
                <div class="row">
                    {!! Form::model($komoditas, ['route' => ['komoditas.update', $komoditas->id], 'method' => 'patch']) !!}

@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\KomoditasDataTable;
-use App\Http\Requests;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateKomoditasRequest;
 use App\Http\Requests\UpdateKomoditasRequest;
 use App\Repositories\KomoditasRepository;
+use App\Traits\GlobalTrait;
 use Flash;
-use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class KomoditasController extends AppBaseController
 {
+    use GlobalTrait;
     /** @var  KomoditasRepository */
     private $komoditasRepository;
 
@@ -55,7 +57,10 @@ class KomoditasController extends AppBaseController
 
         $komoditas = $this->komoditasRepository->create($input);
 
-        Flash::success('Komoditas saved successfully.');
+        // Save Activity
+        $activity = "Menambahkan Komoditas $komoditas->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('komoditas.index'));
     }
@@ -120,7 +125,9 @@ class KomoditasController extends AppBaseController
 
         $komoditas = $this->komoditasRepository->update($request->all(), $id);
 
-        Flash::success('Komoditas updated successfully.');
+        $activity = "Memperbaharui komoditas $komoditas->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('komoditas.index'));
     }
@@ -132,7 +139,7 @@ class KomoditasController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $komoditas = $this->komoditasRepository->findWithoutFail($id);
 
@@ -141,11 +148,10 @@ class KomoditasController extends AppBaseController
 
             return redirect(route('komoditas.index'));
         }
-
+        $activity = "Menghapus komoditas $komoditas->nama";
+        $this->saveActivity($request, $activity);
         $this->komoditasRepository->delete($id);
-
-        Flash::success('Komoditas deleted successfully.');
-
+        Flash::success(config('agro.form_delete_success'));
         return redirect(route('komoditas.index'));
     }
 }

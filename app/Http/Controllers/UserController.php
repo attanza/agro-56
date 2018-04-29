@@ -13,6 +13,7 @@ use App\Traits\SaveFileTrait;
 use Flash;
 use Illuminate\Http\Request;
 use Response;
+use Auth;
 
 class UserController extends AppBaseController
 {
@@ -149,7 +150,7 @@ class UserController extends AppBaseController
         $activity = "Menghapus User $user->name";
         $this->saveActivity($request, $activity);
         $this->userRepository->delete($id);
-        Flash::success(config('agro.form_update_success'));
+        Flash::success(config('agro.form_delete_success'));
         return redirect(route('users.index'));
     }
 }

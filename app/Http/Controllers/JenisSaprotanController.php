@@ -10,9 +10,11 @@ use App\Repositories\JenisSaprotanRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Traits\GlobalTrait;
 
 class JenisSaprotanController extends AppBaseController
 {
+    use GlobalTrait;    
     /** @var  JenisSaprotanRepository */
     private $jenisSaprotanRepository;
 
@@ -55,7 +57,10 @@ class JenisSaprotanController extends AppBaseController
 
         $jenisSaprotan = $this->jenisSaprotanRepository->create($input);
 
-        Flash::success('Jenis Saprotan saved successfully.');
+        // Save Activity
+        $activity = "Menambahkan jenis saprotan $jenisSaprotan->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('jenisSaprotans.index'));
     }
@@ -119,8 +124,10 @@ class JenisSaprotanController extends AppBaseController
         }
 
         $jenisSaprotan = $this->jenisSaprotanRepository->update($request->all(), $id);
-
-        Flash::success('Jenis Saprotan updated successfully.');
+        // Save Activity
+        $activity = "Memperbaharui jenis saprotan $jenisSaprotan->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('jenisSaprotans.index'));
     }
