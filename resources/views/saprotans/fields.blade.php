@@ -6,7 +6,7 @@
 
 <!-- Jenis Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('jenis_id', 'Jenis Id:') !!}
+    {!! Form::label('jenis_id', 'Jenis:') !!}
     <select name="jenis_id" id="jenis_id" class="form-control">
         @foreach ($jenis as $j)
             <option value="{{$j->id}}">{{$j->nama}}</option>
@@ -34,6 +34,8 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('saprotans.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('saprotans.index') !!}" class="btn btn-default">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+    {!! Form::submit('Save', ['class' => 'btn btn-warning pull-right']) !!}
 </div>

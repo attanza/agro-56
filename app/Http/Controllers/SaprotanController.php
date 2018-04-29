@@ -10,9 +10,15 @@ use App\Models\JenisSaprotan;
 use App\Repositories\SaprotanRepository;
 use Flash;
 use Response;
+use App\Traits\GlobalTrait;
+use Illuminate\Http\Request;
+
 
 class SaprotanController extends AppBaseController
 {
+
+    use GlobalTrait;
+    
     /** @var  SaprotanRepository */
     private $saprotanRepository;
 
@@ -56,7 +62,10 @@ class SaprotanController extends AppBaseController
 
         $saprotan = $this->saprotanRepository->create($input);
 
-        Flash::success('Saprotan saved successfully.');
+        // Save Activity
+        $activity = "Menambahkan Saprotan $saprotan->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('saprotans.index'));
     }
@@ -90,6 +99,8 @@ class SaprotanController extends AppBaseController
      */
     public function edit($id)
     {
+        $jenis = JenisSaprotan::select('id', 'nama')->orderBy('nama')->get();
+        
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {
@@ -98,7 +109,7 @@ class SaprotanController extends AppBaseController
             return redirect(route('saprotans.index'));
         }
 
-        return view('saprotans.edit')->with('saprotan', $saprotan);
+        return view('saprotans.edit')->with(['saprotan' => $saprotan, 'jenis' => $jenis]);
     }
 
     /**
@@ -121,7 +132,9 @@ class SaprotanController extends AppBaseController
 
         $saprotan = $this->saprotanRepository->update($request->all(), $id);
 
-        Flash::success('Saprotan updated successfully.');
+        $activity = "Memperbaharui Saprotan $saprotan->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('saprotans.index'));
     }
@@ -142,11 +155,10 @@ class SaprotanController extends AppBaseController
 
             return redirect(route('saprotans.index'));
         }
-
+        $activity = "Menghapus saprotan $saprotan->nama";
+        $this->saveActivity($request, $activity);
         $this->saprotanRepository->delete($id);
-
-        Flash::success('Saprotan deleted successfully.');
-
+        Flash::success(config('agro.form_delete_success'));
         return redirect(route('saprotans.index'));
     }
 }
