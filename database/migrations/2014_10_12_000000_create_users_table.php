@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('photo')->nullable();
             $table->boolean('is_active')->default(1);
             $table->dateTime('last_login')->nullable();
+            $table->integer('role_id')->unsigned();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
