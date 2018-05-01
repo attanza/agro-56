@@ -6,14 +6,15 @@ use App\DataTables\UserDataTable;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\NewPasswordMail;
 use App\Models\Role;
 use App\Repositories\UserRepository;
 use App\Traits\GlobalTrait;
 use App\Traits\SaveFileTrait;
 use Flash;
 use Illuminate\Http\Request;
+use Mail;
 use Response;
-use Auth;
 
 class UserController extends AppBaseController
 {
@@ -69,7 +70,9 @@ class UserController extends AppBaseController
         $activity = "Menambahkan User $user->name";
         $this->saveActivity($request, $activity);
         Flash::success(config('agro.form_create_success'));
-        // TODO Send email
+        // Send email
+        Mail::to($user->email)
+            ->queue(new NewPasswordMail($user, $randomPassord));
         return redirect(route('users.index'));
     }
 

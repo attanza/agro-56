@@ -2,7 +2,7 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'KomoditasController@index');
+    Route::get('/', 'UserController@index');
 
     Route::resource('komoditas', 'KomoditasController');
 
@@ -19,9 +19,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('roles', 'RoleController');
 
     Route::resource('users', 'UserController');
+
+    Route::resource('panens', 'PanenController');
+    
 });
 
 
+Route::get('/mailable', function () {
+    $user = App\User::find(1);
+    $password = str_random(6);
 
-
-Route::resource('panens', 'PanenController');
+    return new App\Mail\NewPasswordMail($user, $password);
+});
