@@ -19,7 +19,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-warning']) !!}
-    <a href="{!! route('komoditas.index') !!}" class="btn btn-warning">
-        <i class="fa fa-arrow-left"></i>
-    </a>
+    <a href="{!! route('komoditas.index') !!}" class="btn btn-default">Back</a>
 </div>
