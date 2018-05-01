@@ -77,6 +77,8 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('vendors.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('vendors.index') !!}" class="btn btn-default">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+    {!! Form::submit('Save', ['class' => 'btn btn-warning pull-right']) !!}
 </div>
