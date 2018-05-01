@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Penggaraps</h1>
+        <h1 class="pull-left">Data Penggarap</h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>

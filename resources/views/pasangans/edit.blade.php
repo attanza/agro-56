@@ -3,12 +3,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Pasangan
+            {{ $pasangan->nama }}
         </h1>
    </section>
    <div class="content">
        @include('adminlte-templates::common.errors')
-       <div class="box box-primary">
+       <div class="box box-warning">
            <div class="box-body">
                <div class="row">
                    {!! Form::model($pasangan, ['route' => ['pasangans.update', $pasangan->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}

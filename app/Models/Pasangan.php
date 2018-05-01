@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 /**
  * @SWG\Definition(
@@ -86,7 +87,7 @@ class Pasangan extends Model
 
     public $table = 'pasangans';
 
-    protected $with = ['pasangan:id,nama'];
+    protected $with = ['penggarap:id,nama'];
 
     protected $dates = ['deleted_at'];
 
@@ -139,9 +140,36 @@ class Pasangan extends Model
         'surat_nikah_file' => 'nullable',
     ];
 
-    public function pasangan()
+    public function penggarap()
     {
         return $this->belongsTo('App\Models\Penggarap', 'penggarap_id');
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        if ($value == null) {
+            return asset('images/male.png');
+        } elseif (!Storage::disk('local')->exists($value)) {
+            return asset('images/male.png');
+        } else {
+            return asset(Storage::url($value));
+        }
+    }
+
+    public function getKtpFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
+    }
+
+    public function getSuratNikahFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
     }
 
 }

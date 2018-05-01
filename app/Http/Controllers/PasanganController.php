@@ -8,13 +8,14 @@ use App\Http\Requests\CreatePasanganRequest;
 use App\Http\Requests\UpdatePasanganRequest;
 use App\Models\Penggarap;
 use App\Repositories\PasanganRepository;
+use App\Traits\GlobalTrait;
 use App\Traits\SaveFileTrait;
 use Flash;
 use Response;
 
 class PasanganController extends AppBaseController
 {
-    use SaveFileTrait;
+    use SaveFileTrait, GlobalTrait;
 
     /** @var  PasanganRepository */
     private $pasanganRepository;
@@ -62,8 +63,11 @@ class PasanganController extends AppBaseController
         $this->checkFile($request, 'photo', 'penggarap', $pasangan);
         $this->checkFile($request, 'ktp_file', 'penggarap', $pasangan);
         $this->checkFile($request, 'surat_nikah_file', 'penggarap', $pasangan);
-
-        Flash::success('Pasangan saved successfully.');
+        $pasangan->save();
+        // Save Activity
+        $activity = "Menambahkan Data Pasangan $pasangan->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('pasangans.index'));
     }
@@ -132,7 +136,11 @@ class PasanganController extends AppBaseController
         $this->checkFile($request, 'photo', 'penggarap', $pasangan);
         $this->checkFile($request, 'ktp_file', 'penggarap', $pasangan);
         $this->checkFile($request, 'surat_nikah_file', 'penggarap', $pasangan);
-        Flash::success('Pasangan updated successfully.');
+        $pasangan->save();
+        // Save Activity
+        $activity = "Memperbaharui Data Pasangan $pasangan->name";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('pasangans.index'));
     }
@@ -154,9 +162,13 @@ class PasanganController extends AppBaseController
             return redirect(route('pasangans.index'));
         }
 
+        // Save Activity
+        $activity = "Menghapus Data Pasangan $pasangan->name";
+        $this->saveActivity($request, $activity);
+
         $this->pasanganRepository->delete($id);
 
-        Flash::success('Pasangan deleted successfully.');
+        Flash::success(config('agro.form_delete_success'));
 
         return redirect(route('pasangans.index'));
     }

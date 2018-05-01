@@ -68,7 +68,7 @@ class PasanganDataTable extends DataTable
             [
                 "name" => "penggarap_id",
                 "title" => "Pasangan",
-                "data" => "pasangan.nama",
+                "data" => "penggarap.nama",
             ],
             'ktp',
             // 'ktp_file',

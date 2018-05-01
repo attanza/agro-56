@@ -68,6 +68,18 @@ $factory->define(App\Models\Penggarap::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Models\Pasangan::class, function (Faker $faker) {
+    return [
+        'penggarap_id' => 1,
+        'nama' => $faker->name,
+        'ktp' => str_random(15),
+        'jenis_kelamin' => 'Wanita',
+        'telpon' => $faker->e164PhoneNumber,
+        'email' => $faker->safeEmail,
+        'no_surat_nikah' => str_random(15),
+    ];
+});
+
 $factory->define(App\Models\Panen::class, function (Faker $faker) {
     return [
         'nama' => $faker->name,

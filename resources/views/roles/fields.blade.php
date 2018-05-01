@@ -24,6 +24,6 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-warning']) !!}
     <a href="{!! route('roles.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Save', ['class' => 'btn btn-warning pull-right']) !!}
 </div>
