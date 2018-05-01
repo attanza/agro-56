@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
         <div class="box box-warning">
             <div class="box-body">
-                    @include('users.table')
+                @include('users.table')
             </div>
         </div>
         <div class="text-center">

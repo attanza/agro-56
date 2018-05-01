@@ -1,5 +1,11 @@
 <ul class="sidebar-menu tree" data-widget="tree">
   <li class="header">MAIN NAVIGATION</li>
+  <li class="{{ Request::is('/') || Request::is('/dashboards*')? 'active' : '' }}">
+      <a href="{!! route('dashboards.index') !!}">
+        <i class="fa fa-tachometer"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
   <li class="{{ Request::is('users*') || Request::is('roles*') ? 'active' : '' }} treeview">
     <a href="#">
       <i class="fa fa-user"></i>

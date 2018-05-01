@@ -2,7 +2,8 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'UserController@index');
+    Route::get('/', 'DashboardController@index');
+    Route::get('/dashboards', 'DashboardController@index')->name('dashboards.index');    
 
     Route::resource('komoditas', 'KomoditasController');
 
