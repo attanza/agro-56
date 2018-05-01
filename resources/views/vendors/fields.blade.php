@@ -22,16 +22,34 @@
     {!! Form::text('npwp', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Npwp File Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('npwp', 'NPWP File:') !!}
+    {!! Form::file('npwp_file') !!}
+</div>
+
 <!-- Siup Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('siup', 'Siup:') !!}
     {!! Form::text('siup', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- SIUP File Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('siup', 'SIUP File:') !!}
+    {!! Form::file('siup_file') !!}
+</div>
+
 <!-- Tdp Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('tdp', 'Tdp:') !!}
     {!! Form::text('tdp', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- TDP File Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('tdp', 'TDP File:') !!}
+    {!! Form::file('tdp_file') !!}
 </div>
 
 <!-- Jenis Saprotan Field -->

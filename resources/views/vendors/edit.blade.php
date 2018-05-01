@@ -11,7 +11,7 @@
        <div class="box box-warning">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'patch']) !!}
+                   {!! Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('vendors.fields')
 

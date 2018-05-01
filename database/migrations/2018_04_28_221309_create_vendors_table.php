@@ -19,8 +19,11 @@ class CreateVendorsTable extends Migration
             $table->text('alamat')->nullable();
             $table->string('telpon', 30);
             $table->string('npwp', 30);
+            $table->string('npwp_file')->nullable();            
             $table->string('siup', 30);
+            $table->string('siup_file')->nullable();            
             $table->string('tdp', 30);
+            $table->string('tdp_file')->nullable();            
             $table->integer('jenis_saprotan');
             $table->integer('harga');
             $table->string('nama_penganggung_jawab', 50);

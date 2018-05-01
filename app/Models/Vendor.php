@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 /**
  * @SWG\Definition(
@@ -157,6 +158,30 @@ class Vendor extends Model
     public function jenis()
     {
         return $this->belongsTo('App\Models\JenisSaprotan', 'jenis_saprotan');
+    }
+
+    public function getNpwpFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
+    }
+
+    public function getSiupFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
+    }
+
+    public function getTdpFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
     }
 
 }

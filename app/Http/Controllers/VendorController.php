@@ -8,11 +8,15 @@ use App\Http\Requests\CreateVendorRequest;
 use App\Http\Requests\UpdateVendorRequest;
 use App\Models\JenisSaprotan;
 use App\Repositories\VendorRepository;
+use App\Traits\GlobalTrait;
+use App\Traits\SaveFileTrait;
 use Flash;
 use Response;
 
 class VendorController extends AppBaseController
 {
+    use SaveFileTrait, GlobalTrait;
+
     /** @var  VendorRepository */
     private $vendorRepository;
 
@@ -55,8 +59,15 @@ class VendorController extends AppBaseController
         $input = $request->all();
 
         $vendor = $this->vendorRepository->create($input);
+        $this->checkFile($request, 'npwp_file', 'vendor', $vendor);
+        $this->checkFile($request, 'siup_file', 'vendor', $vendor);
+        $this->checkFile($request, 'tdp_file', 'vendor', $vendor);
+        $vendor->save();
 
-        Flash::success('Vendor saved successfully.');
+        // Save Activity
+        $activity = "Menambahkan Data Vendor $vendor->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('vendors.index'));
     }
@@ -70,7 +81,7 @@ class VendorController extends AppBaseController
      */
     public function show($id)
     {
-        
+
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
@@ -92,7 +103,7 @@ class VendorController extends AppBaseController
     public function edit($id)
     {
         $jenis = JenisSaprotan::select('id', 'nama')->orderBy('nama')->get();
-        
+
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
@@ -124,7 +135,15 @@ class VendorController extends AppBaseController
 
         $vendor = $this->vendorRepository->update($request->all(), $id);
 
-        Flash::success('Vendor updated successfully.');
+        $this->checkFile($request, 'npwp_file', 'vendor', $vendor);
+        $this->checkFile($request, 'siup_file', 'vendor', $vendor);
+        $this->checkFile($request, 'tdp_file', 'vendor', $vendor);
+        $vendor->save();
+
+        // Save Activity
+        $activity = "Memperbaharui Data Vendor $vendor->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('vendors.index'));
     }
@@ -146,9 +165,12 @@ class VendorController extends AppBaseController
             return redirect(route('vendors.index'));
         }
 
+        // Save Activity
+        $activity = "Memperbaharui Data Vendor $vendor->nama";
+        $this->saveActivity($request, $activity);
         $this->vendorRepository->delete($id);
 
-        Flash::success('Vendor deleted successfully.');
+        Flash::success(config('agro.form_delete_success'));
 
         return redirect(route('vendors.index'));
     }

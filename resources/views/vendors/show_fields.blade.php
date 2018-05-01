@@ -19,19 +19,37 @@
 <!-- Npwp Field -->
 <div class="form-group col-md-6">
     {!! Form::label('npwp', 'Npwp:') !!}
-    <p>{!! $vendor->npwp !!}</p>
+    <p>
+        @if($vendor->npwp_file != "")
+            <a href="{{$vendor->npwp_file}}" target="_blank">{{ $vendor->npwp }}<</a>
+        @else
+            {{ $vendor->npwp }}
+        @endif
+    </p>
 </div>
 
 <!-- Siup Field -->
 <div class="form-group col-md-6">
     {!! Form::label('siup', 'Siup:') !!}
-    <p>{!! $vendor->siup !!}</p>
+    <p>
+        @if($vendor->siup_file != "")
+            <a href="{{$vendor->siup_file}}" target="_blank">{{ $vendor->siup }}<</a>
+        @else
+            {{ $vendor->siup }}
+        @endif
+    </p>
 </div>
 
 <!-- Tdp Field -->
 <div class="form-group col-md-6">
     {!! Form::label('tdp', 'Tdp:') !!}
-    <p>{!! $vendor->tdp !!}</p>
+    <p>
+        @if($vendor->tdp_file != "")
+            <a href="{{$vendor->tdp_file}}" target="_blank">{{ $vendor->tdp }}<</a>
+        @else
+            {{ $vendor->tdp }}
+        @endif
+    </p>
 </div>
 
 <!-- Jenis Saprotan Field -->
