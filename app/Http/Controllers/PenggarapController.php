@@ -8,13 +8,14 @@ use App\Http\Requests\CreatePenggarapRequest;
 use App\Http\Requests\UpdatePenggarapRequest;
 use App\Repositories\PenggarapRepository;
 use App\Traits\SaveFileTrait;
+use App\Traits\GlobalTrait;
 use Flash;
 use QrCode;
 use Response;
 
 class PenggarapController extends AppBaseController
 {
-    use SaveFileTrait;
+    use SaveFileTrait, GlobalTrait;    
 
     /** @var  PenggarapRepository */
     private $penggarapRepository;
@@ -60,8 +61,11 @@ class PenggarapController extends AppBaseController
         $this->checkFile($request, 'photo', 'penggarap', $penggarap);
         $this->checkFile($request, 'ktp_file', 'penggarap', $penggarap);
         $this->checkFile($request, 'kk_file', 'penggarap', $penggarap);
-
-        Flash::success('Penggarap saved successfully.');
+        $penggarap->save();
+        // Save Activity
+        $activity = "Menambahkan Data Penggarap $penggarap->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_create_success'));
 
         return redirect(route('penggaraps.index'));
     }
@@ -130,7 +134,12 @@ class PenggarapController extends AppBaseController
         $this->checkFile($request, 'photo', 'penggarap', $penggarap);
         $this->checkFile($request, 'ktp_file', 'penggarap', $penggarap);
         $this->checkFile($request, 'kk_file', 'penggarap', $penggarap);
-        Flash::success('Penggarap updated successfully.');
+        $penggarap->save();        
+        
+        // Save Activity
+        $activity = "Memperbaharui Data Penggarap $penggarap->nama";
+        $this->saveActivity($request, $activity);
+        Flash::success(config('agro.form_update_success'));
 
         return redirect(route('penggaraps.index'));
     }
@@ -145,17 +154,16 @@ class PenggarapController extends AppBaseController
     public function destroy($id)
     {
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
-
         if (empty($penggarap)) {
             Flash::error('Penggarap not found');
 
             return redirect(route('penggaraps.index'));
         }
-
+        // Save Activity
+        $activity = "Menghapus Data Penggarap $penggarap->nama";
+        $this->saveActivity($request, $activity);
         $this->penggarapRepository->delete($id);
-
-        Flash::success('Penggarap deleted successfully.');
-
+        Flash::success(config('agro.form_delete_success'));
         return redirect(route('penggaraps.index'));
     }
 }

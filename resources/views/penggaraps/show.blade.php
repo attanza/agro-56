@@ -21,7 +21,16 @@
                 </div>
                 <div class="row">
                     @include('penggaraps.show_fields')
-                    <a href="{!! route('penggaraps.index') !!}" class="btn btn-default">Back</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{{ route('penggaraps.index') }}" class="btn btn-default">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        <a href="{{ route('penggaraps.edit', $penggarap->id) }}" class="btn btn-warning pull-right">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

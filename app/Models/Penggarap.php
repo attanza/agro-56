@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Storage;
 /**
  * @SWG\Definition(
  *      definition="Penggarap",
@@ -174,5 +174,21 @@ class Penggarap extends Model
         } else {
             return asset(Storage::url($value));
         }
+    }
+
+    public function getKtpFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
+    }
+
+    public function getKkFileAttribute($value)
+    {
+        if ($value == null) {
+            return "";
+        }
+        return asset(Storage::url($value));
     }
 }
