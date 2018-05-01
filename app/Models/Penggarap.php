@@ -164,4 +164,15 @@ class Penggarap extends Model
     {
         return $this->hasOne('App\Models\Pasangan');
     }
+
+    public function getPhotoAttribute($value)
+    {
+        if ($value == null) {
+            return asset('images/male.png');
+        } elseif (!Storage::disk('local')->exists($value)) {
+            return asset('images/male.png');
+        } else {
+            return asset(Storage::url($value));
+        }
+    }
 }

@@ -67,3 +67,15 @@ $factory->define(App\Models\Penggarap::class, function (Faker $faker) {
         'alamat' => $faker->streetAddress,
     ];
 });
+
+$factory->define(App\Models\Panen::class, function (Faker $faker) {
+    return [
+        'nama' => $faker->name,
+        'penggarap_id' => 1,
+        'tanggal' => $faker->date,
+        'komoditi_id' => 1,
+        'jumlah' => rand(10, 30),
+        'harga' => rand(1000000, 5000000),
+        'pembayaran' => rand(5000000, 10000000)
+    ];
+});

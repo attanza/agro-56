@@ -1,9 +1,9 @@
-{!! Form::open(['route' => ['penggaraps.destroy', $id], 'method' => 'delete']) !!}
+{!! Form::open(['route' => ['panens.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('penggaraps.show', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('panens.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
-    <a href="{{ route('penggaraps.edit', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('panens.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>
     {{-- {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [

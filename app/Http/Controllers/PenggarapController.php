@@ -9,6 +9,7 @@ use App\Http\Requests\UpdatePenggarapRequest;
 use App\Repositories\PenggarapRepository;
 use App\Traits\SaveFileTrait;
 use Flash;
+use QrCode;
 use Response;
 
 class PenggarapController extends AppBaseController
@@ -75,14 +76,16 @@ class PenggarapController extends AppBaseController
     public function show($id)
     {
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
-
+        
         if (empty($penggarap)) {
             Flash::error('Penggarap not found');
-
+            
             return redirect(route('penggaraps.index'));
         }
+        
+        $qr = QrCode::size(250)->generate($penggarap->id);
 
-        return view('penggaraps.show')->with('penggarap', $penggarap);
+        return view('penggaraps.show')->with(['penggarap' => $penggarap, 'qr' => $qr]);
     }
 
     /**

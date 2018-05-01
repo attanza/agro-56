@@ -65,13 +65,14 @@
     {!! Form::label('photo', 'Photo:') !!}
     {!! Form::file('photo') !!}
 </div>
-<div class="clearfix"></div>
 
 <!-- Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status', 'Status:') !!}
     {!! Form::select('status', ['Aktif' => 'Aktif', 'Non Aktif' => 'Non Aktif'], null, ['class' => 'form-control']) !!}
 </div>
+
+<div class="clearfix"></div>
 
 <!-- Alamat Field -->
 <div class="form-group col-sm-12 col-lg-12">
@@ -81,6 +82,8 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('penggaraps.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('penggaraps.index') !!}" class="btn btn-default">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+    {!! Form::submit('Save', ['class' => 'btn btn-warning pull-right']) !!}
 </div>

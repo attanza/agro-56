@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Penggaraps</h1>
+        <h1 class="pull-left">Panens</h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
         <div class="box box-warning">
             <div class="box-body">
-                    @include('penggaraps.table')
+                    @include('panens.table')
             </div>
         </div>
         <div class="text-center">

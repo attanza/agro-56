@@ -2,6 +2,14 @@
     <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>Users</span></a>
 </li>
 
+<li class="{{ Request::is('penggaraps*') ? 'active' : '' }}">
+    <a href="{!! route('penggaraps.index') !!}"><i class="fa fa-male"></i><span>Penggarap</span></a>
+</li>
+
+<li class="{{ Request::is('pasangans*') ? 'active' : '' }}">
+    <a href="{!! route('pasangans.index') !!}"><i class="fa fa-female"></i><span>Pasangan</span></a>
+</li>
+
 <li class="{{ Request::is('komoditas*') ? 'active' : '' }}">
     <a href="{!! route('komoditas.index') !!}"><i class="fa fa-pagelines"></i><span>Komoditas</span></a>
 </li>
@@ -18,14 +26,10 @@
     <a href="{!! route('vendors.index') !!}"><i class="fa fa-edit"></i><span>Vendor</span></a>
 </li>
 
-<li class="{{ Request::is('penggaraps*') ? 'active' : '' }}">
-    <a href="{!! route('penggaraps.index') !!}"><i class="fa fa-edit"></i><span>Penggarap</span></a>
-</li>
-
-<li class="{{ Request::is('pasangans*') ? 'active' : '' }}">
-    <a href="{!! route('pasangans.index') !!}"><i class="fa fa-edit"></i><span>Pasangans</span></a>
-</li>
-
 <li class="{{ Request::is('roles*') ? 'active' : '' }}">
     <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
 </li>
+<li class="{{ Request::is('panens*') ? 'active' : '' }}">
+    <a href="{!! route('panens.index') !!}"><i class="fa fa-edit"></i><span>Panens</span></a>
+</li>
+

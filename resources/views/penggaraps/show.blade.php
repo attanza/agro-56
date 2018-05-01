@@ -7,9 +7,19 @@
         </h1>
     </section>
     <div class="content">
-        <div class="box box-primary">
+        <div class="box box-warning">
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <img src="{{$penggarap->photo}}" alt="{{$penggarap->name}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        {!! $qr !!}
+                    </div>
+                </div>
+                <div class="row">
                     @include('penggaraps.show_fields')
                     <a href="{!! route('penggaraps.index') !!}" class="btn btn-default">Back</a>
                 </div>

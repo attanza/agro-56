@@ -22,3 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+
+
+Route::resource('panens', 'PanenController');
