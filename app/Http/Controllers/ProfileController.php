@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use App\Http\Requests\ChangePasswordRequest;
 use App\User;
+use Auth;
+use Flash;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -14,10 +17,24 @@ class ProfileController extends Controller
 
     public function edit($id)
     {
-        if (Auth::id() != $id) {
-            Flash::error('Proses tidak diizinkan');
-            return redirect(route('dashboards.index'));
-        }
         return view('profile.edit')->withUser(Auth::user());
+    }
+
+    public function changePasswordForm($id)
+    {
+        return view('profile.change_password')->withUser(Auth::user());
+    }
+
+    public function updatePassword(ChangePasswordRequest $request, $id)
+    {
+        $user = Auth::user();
+        if (!Hash::check($request->password_lama, $user->password)) {
+            Flash::error('Password Lama tidak cocok');
+            return redirect()->back();
+        }
+        $user->password = bcrypt($request->password);
+        $user->save();
+        Flash::success('Password diperbaharui');
+        return redirect('/profile');
     }
 }

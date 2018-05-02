@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            User
+            {{ $user->name }}
         </h1>
     </section>
     <div class="content">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        @include('users.show_fields')
+                        @include('profile.show_fields')
                         <a href="{!! route('profile.edit', $user->id) !!}" class="btn btn-default pull-right">
                             <i class="fa fa-edit"></i>
                         </a>                        

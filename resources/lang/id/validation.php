@@ -112,24 +112,4 @@ return [
     | "surel" saja. Ini benar-benar membantu kita membuat pesan sedikit bersih.
     |
     */
-
-    'attributes'           => [
-        'first_name' => 'Nama Depan',
-        'last_name' => 'Nama Belakang',
-        'name' => 'Nama',
-        'email' => 'Alamat Email',
-        'dob' => 'Tanggal Lahir',
-        'gender' => 'Jenis Kelamin',
-        'terms' => 'Syarat & ketentuan',
-        'dream' => 'Mimpimu',
-        'keyword' => 'Kata kunci',
-        'title' => 'Judul',
-        'description' => 'Deskripsi',
-        'video_link' => 'Link Video',
-        'old_password' => 'Password lama',
-        'password_confirmation' => 'Konfirmasi Password',
-        'address' => 'Alamat',
-        'code' => 'Kode'
-    ],
-
 ];
