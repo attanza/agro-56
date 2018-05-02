@@ -77,7 +77,7 @@ class KomoditasController extends AppBaseController
         $komoditas = $this->komoditasRepository->findWithoutFail($id);
 
         if (empty($komoditas)) {
-            Flash::error('Komoditas not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('komoditas.index'));
         }
@@ -97,7 +97,7 @@ class KomoditasController extends AppBaseController
         $komoditas = $this->komoditasRepository->findWithoutFail($id);
 
         if (empty($komoditas)) {
-            Flash::error('Komoditas not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('komoditas.index'));
         }
@@ -118,7 +118,7 @@ class KomoditasController extends AppBaseController
         $komoditas = $this->komoditasRepository->findWithoutFail($id);
 
         if (empty($komoditas)) {
-            Flash::error('Komoditas not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('komoditas.index'));
         }
@@ -144,7 +144,7 @@ class KomoditasController extends AppBaseController
         $komoditas = $this->komoditasRepository->findWithoutFail($id);
 
         if (empty($komoditas)) {
-            Flash::error('Komoditas not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('komoditas.index'));
         }

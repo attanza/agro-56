@@ -7,4 +7,5 @@ return [
     'form_delete_failed' => 'Data gagal dihapus',
     'form_update_success' => 'Data berhasil diperbaharui',
     'form_update_failed' => 'Data gagal diperbaharui',
+    'db_not_found' => 'Data tidak ditemukan'
 ];

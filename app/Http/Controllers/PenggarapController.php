@@ -82,7 +82,7 @@ class PenggarapController extends AppBaseController
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
 
         if (empty($penggarap)) {
-            Flash::error('Penggarap not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('penggaraps.index'));
         }
@@ -104,7 +104,7 @@ class PenggarapController extends AppBaseController
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
 
         if (empty($penggarap)) {
-            Flash::error('Penggarap not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('penggaraps.index'));
         }
@@ -125,7 +125,7 @@ class PenggarapController extends AppBaseController
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
 
         if (empty($penggarap)) {
-            Flash::error('Penggarap not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('penggaraps.index'));
         }
@@ -155,7 +155,7 @@ class PenggarapController extends AppBaseController
     {
         $penggarap = $this->penggarapRepository->findWithoutFail($id);
         if (empty($penggarap)) {
-            Flash::error('Penggarap not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('penggaraps.index'));
         }

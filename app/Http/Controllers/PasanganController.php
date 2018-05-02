@@ -84,7 +84,7 @@ class PasanganController extends AppBaseController
         $pasangan = $this->pasanganRepository->findWithoutFail($id);
 
         if (empty($pasangan)) {
-            Flash::error('Pasangan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('pasangans.index'));
         }
@@ -106,7 +106,7 @@ class PasanganController extends AppBaseController
         $currentPenggarap = Penggarap::select('id', 'nama')->find($pasangan->penggarap_id);
         $penggaraps->push($currentPenggarap);
         if (empty($pasangan)) {
-            Flash::error('Pasangan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('pasangans.index'));
         }
@@ -127,7 +127,7 @@ class PasanganController extends AppBaseController
         $pasangan = $this->pasanganRepository->findWithoutFail($id);
 
         if (empty($pasangan)) {
-            Flash::error('Pasangan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('pasangans.index'));
         }
@@ -157,7 +157,7 @@ class PasanganController extends AppBaseController
         $pasangan = $this->pasanganRepository->findWithoutFail($id);
 
         if (empty($pasangan)) {
-            Flash::error('Pasangan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('pasangans.index'));
         }

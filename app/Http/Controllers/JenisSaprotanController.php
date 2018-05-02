@@ -77,7 +77,7 @@ class JenisSaprotanController extends AppBaseController
         $jenisSaprotan = $this->jenisSaprotanRepository->findWithoutFail($id);
 
         if (empty($jenisSaprotan)) {
-            Flash::error('Jenis Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('jenisSaprotans.index'));
         }
@@ -97,7 +97,7 @@ class JenisSaprotanController extends AppBaseController
         $jenisSaprotan = $this->jenisSaprotanRepository->findWithoutFail($id);
 
         if (empty($jenisSaprotan)) {
-            Flash::error('Jenis Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('jenisSaprotans.index'));
         }
@@ -118,7 +118,7 @@ class JenisSaprotanController extends AppBaseController
         $jenisSaprotan = $this->jenisSaprotanRepository->findWithoutFail($id);
 
         if (empty($jenisSaprotan)) {
-            Flash::error('Jenis Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('jenisSaprotans.index'));
         }
@@ -144,7 +144,7 @@ class JenisSaprotanController extends AppBaseController
         $jenisSaprotan = $this->jenisSaprotanRepository->findWithoutFail($id);
 
         if (empty($jenisSaprotan)) {
-            Flash::error('Jenis Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('jenisSaprotans.index'));
         }

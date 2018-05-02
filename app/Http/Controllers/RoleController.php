@@ -72,7 +72,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('roles.index'));
         }
@@ -92,7 +92,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('roles.index'));
         }
@@ -113,7 +113,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('roles.index'));
         }
@@ -137,7 +137,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('roles.index'));
         }

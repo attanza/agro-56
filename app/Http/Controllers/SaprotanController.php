@@ -82,7 +82,7 @@ class SaprotanController extends AppBaseController
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {
-            Flash::error('Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('saprotans.index'));
         }
@@ -104,7 +104,7 @@ class SaprotanController extends AppBaseController
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {
-            Flash::error('Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('saprotans.index'));
         }
@@ -125,7 +125,7 @@ class SaprotanController extends AppBaseController
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {
-            Flash::error('Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('saprotans.index'));
         }
@@ -151,7 +151,7 @@ class SaprotanController extends AppBaseController
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {
-            Flash::error('Saprotan not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('saprotans.index'));
         }

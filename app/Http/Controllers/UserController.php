@@ -87,7 +87,7 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->findWithoutFail($id);
         if (empty($user)) {
-            Flash::error('User tidak ditemukan');
+            Flash::error(config('agro.db_not_found'));
             return redirect(route('users.index'));
         }
         return view('users.show')->with('user', $user);
@@ -105,7 +105,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->findWithoutFail($id);
         $roles = Role::select('id', 'nama')->orderBy('nama')->get();
         if (empty($user)) {
-            Flash::error('User tidak ditemukan');
+            Flash::error(config('agro.db_not_found'));
             return redirect(route('users.index'));
         }
         return view('users.edit')->with('user', $user)->withRoles($roles);
@@ -147,7 +147,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->findWithoutFail($id);
 
         if (empty($user)) {
-            Flash::error('User tidak ditemukan');
+            Flash::error(config('agro.db_not_found'));
             return redirect(route('users.index'));
         }
         $activity = "Menghapus User $user->name";

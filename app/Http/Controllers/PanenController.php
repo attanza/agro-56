@@ -85,7 +85,7 @@ class PanenController extends AppBaseController
         $panen = $this->panenRepository->findWithoutFail($id);
 
         if (empty($panen)) {
-            Flash::error('Panen not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('panens.index'));
         }
@@ -105,7 +105,7 @@ class PanenController extends AppBaseController
         $panen = $this->panenRepository->findWithoutFail($id);
 
         if (empty($panen)) {
-            Flash::error('Panen not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('panens.index'));
         }
@@ -132,7 +132,7 @@ class PanenController extends AppBaseController
         $panen = $this->panenRepository->findWithoutFail($id);
 
         if (empty($panen)) {
-            Flash::error('Panen not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('panens.index'));
         }
@@ -159,7 +159,7 @@ class PanenController extends AppBaseController
         $panen = $this->panenRepository->findWithoutFail($id);
 
         if (empty($panen)) {
-            Flash::error('Panen not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('panens.index'));
         }

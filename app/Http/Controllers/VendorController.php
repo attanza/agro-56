@@ -85,7 +85,7 @@ class VendorController extends AppBaseController
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
-            Flash::error('Vendor not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('vendors.index'));
         }
@@ -107,7 +107,7 @@ class VendorController extends AppBaseController
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
-            Flash::error('Vendor not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('vendors.index'));
         }
@@ -128,7 +128,7 @@ class VendorController extends AppBaseController
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
-            Flash::error('Vendor not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('vendors.index'));
         }
@@ -160,7 +160,7 @@ class VendorController extends AppBaseController
         $vendor = $this->vendorRepository->findWithoutFail($id);
 
         if (empty($vendor)) {
-            Flash::error('Vendor not found');
+            Flash::error(config('agro.db_not_found'));
 
             return redirect(route('vendors.index'));
         }
