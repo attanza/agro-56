@@ -38,6 +38,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/mailable', function () {
     $user = App\User::find(1);
     $password = str_random(6);
-
-    return new App\Mail\NewPasswordMail($user, $password);
+    return new App\Mail\ResetPasswordMail($user, $password);
 });

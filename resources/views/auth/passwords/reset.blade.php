@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator</title>
+    <title>Agro Jabar</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -35,12 +35,14 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        {{-- <a href="{{ url('/') }}"><b>Agro Jabar</b></a> --}}
+    <img src="{{asset('images/logo.png')}}" alt="">
+        
     </div>
 
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Reset your password</p>
+        <p class="login-box-msg">Atur ulang password anda</p>
 
         <form method="post" action="{{ url('/password/reset') }}">
             {!! csrf_field() !!}
@@ -69,7 +71,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
+                <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password_confirmation'))
@@ -81,8 +83,8 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary pull-right">
-                        <i class="fa fa-btn fa-refresh"></i>Reset Password
+                    <button type="submit" class="btn btn-warning pull-right">
+                        <i class="fa fa-btn fa-refresh"></i><span style="margin-left: 10px;">Reset Password</span>
                     </button>
                 </div>
             </div>

@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
+use Mail;
+use App\Mail\ResetPasswordMail;
 
 class User extends Authenticatable
 {
@@ -45,5 +47,12 @@ class User extends Authenticatable
         } else {
             return asset(Storage::url($value));
         }
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // $this->notify(new ResetPasswordNotification($token));
+        Mail::to($this->email)
+            ->queue(new ResetPasswordMail($this, $token));
     }
 }
