@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Vendor;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class VendorDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class VendorDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -79,14 +79,14 @@ class VendorDataTable extends DataTable
             [
                 "name" => "nama_penganggung_jawab",
                 "title" => "Penanggung Jawab",
-                "data" => "nama_penganggung_jawab"
+                "data" => "nama_penganggung_jawab",
             ],
             // 'posisi_penanggung_jawab',
             // 'alamat_penanggung_jawab',
             [
                 "name" => "no_telpon_penanggung_jawab",
                 "title" => "Telpon Penanggung Jawab",
-                "data" => "no_telpon_penanggung_jawab"
+                "data" => "no_telpon_penanggung_jawab",
             ],
         ];
     }

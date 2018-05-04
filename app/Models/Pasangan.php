@@ -171,5 +171,4 @@ class Pasangan extends Model
         }
         return asset(Storage::url($value));
     }
-
 }

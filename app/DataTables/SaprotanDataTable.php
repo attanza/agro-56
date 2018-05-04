@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Saprotan;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class SaprotanDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class SaprotanDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -68,11 +68,11 @@ class SaprotanDataTable extends DataTable
             [
                 "name" => "jenis_id",
                 "title" => "Jenis Saprotan",
-                "data" => "jenis.nama"
+                "data" => "jenis.nama",
             ],
             'merk',
             'satuan',
-            'harga_satuan'
+            'harga_satuan',
         ];
     }
 
@@ -86,5 +86,3 @@ class SaprotanDataTable extends DataTable
         return 'saprotansdatatable_' . time();
     }
 }
-
-    

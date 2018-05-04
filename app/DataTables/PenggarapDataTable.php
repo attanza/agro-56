@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Penggarap;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class PenggarapDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class PenggarapDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',

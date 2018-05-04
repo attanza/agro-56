@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Komoditas;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class KomoditasDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class KomoditasDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -67,7 +67,7 @@ class KomoditasDataTable extends DataTable
             'nama',
             'satuan',
             'satuan',
-            'harga'
+            'harga',
         ];
     }
 

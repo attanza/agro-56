@@ -9,7 +9,8 @@ use Storage;
 /**
  * @SWG\Definition(
  *      definition="Vendor",
- *      required={"nama", "telpon", "npwp", "siup", "tdp", "jenis_saprotan", "harga", "nama_penganggung_jawab", "no_telpon_penanggung_jawab"},
+ *      required={"nama", "telpon", "npwp", "siup", "tdp", "jenis_saprotan", "harga", "nama_penganggung_jawab",
+ *          "no_telpon_penanggung_jawab"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -183,5 +184,4 @@ class Vendor extends Model
         }
         return asset(Storage::url($value));
     }
-
 }

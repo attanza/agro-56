@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\JenisSaprotan;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class JenisSaprotanDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class JenisSaprotanDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -65,7 +65,7 @@ class JenisSaprotanDataTable extends DataTable
     {
         return [
             'nama',
-            'keterangan'
+            'keterangan',
         ];
     }
 

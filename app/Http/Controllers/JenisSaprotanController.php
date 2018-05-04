@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\JenisSaprotanDataTable;
-use App\Http\Requests;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateJenisSaprotanRequest;
 use App\Http\Requests\UpdateJenisSaprotanRequest;
 use App\Repositories\JenisSaprotanRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 use App\Traits\GlobalTrait;
+use Flash;
+use Response;
 
 class JenisSaprotanController extends AppBaseController
 {
-    use GlobalTrait;    
+    use GlobalTrait;
     /** @var  JenisSaprotanRepository */
     private $jenisSaprotanRepository;
 

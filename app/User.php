@@ -2,12 +2,12 @@
 
 namespace App;
 
+use App\Mail\ResetPasswordMail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Storage;
 use Mail;
-use App\Mail\ResetPasswordMail;
+use Storage;
 
 class User extends Authenticatable
 {

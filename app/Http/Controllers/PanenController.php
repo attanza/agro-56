@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PanenDataTable;
-use App\Http\Requests;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreatePanenRequest;
 use App\Http\Requests\UpdatePanenRequest;
-use App\Repositories\PanenRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
-use App\Traits\GlobalTrait;
-use App\Models\Penggarap;
 use App\Models\Komoditas;
+use App\Models\Penggarap;
+use App\Repositories\PanenRepository;
+use App\Traits\GlobalTrait;
+use Flash;
+use Response;
 
 class PanenController extends AppBaseController
 {
     use GlobalTrait;
-    
+
     /** @var  PanenRepository */
     private $panenRepository;
 
@@ -45,7 +44,7 @@ class PanenController extends AppBaseController
     public function create()
     {
         $penggaraps = Penggarap::select('id', 'nama')->orderBy('nama')->get();
-        $komoditas = Komoditas::select('id', 'nama')->orderBy('nama')->get();        
+        $komoditas = Komoditas::select('id', 'nama')->orderBy('nama')->get();
         return view('panens.create')->with([
             'penggaraps' => $penggaraps,
             'komoditas' => $komoditas,
@@ -110,7 +109,7 @@ class PanenController extends AppBaseController
             return redirect(route('panens.index'));
         }
         $penggaraps = Penggarap::select('id', 'nama')->orderBy('nama')->get();
-        $komoditas = Komoditas::select('id', 'nama')->orderBy('nama')->get();   
+        $komoditas = Komoditas::select('id', 'nama')->orderBy('nama')->get();
 
         return view('panens.edit')->with([
             'panen' => $panen,
@@ -167,9 +166,9 @@ class PanenController extends AppBaseController
         // Save Activity
         $activity = "Menghapus Data Panen $panen->name";
         $this->saveActivity($request, $activity);
-        
+
         $this->panenRepository->delete($id);
-        
+
         Flash::success(config('agro.form_delete_success'));
 
         return redirect(route('panens.index'));

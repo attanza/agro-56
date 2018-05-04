@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Pasangan;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class PasanganDataTable extends DataTable
 {
@@ -44,8 +44,8 @@ class PasanganDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -64,7 +64,7 @@ class PasanganDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'nama',            
+            'nama',
             [
                 "name" => "penggarap_id",
                 "title" => "Pasangan",

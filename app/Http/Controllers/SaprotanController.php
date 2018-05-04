@@ -8,17 +8,16 @@ use App\Http\Requests\CreateSaprotanRequest;
 use App\Http\Requests\UpdateSaprotanRequest;
 use App\Models\JenisSaprotan;
 use App\Repositories\SaprotanRepository;
-use Flash;
-use Response;
 use App\Traits\GlobalTrait;
+use Flash;
 use Illuminate\Http\Request;
-
+use Response;
 
 class SaprotanController extends AppBaseController
 {
 
     use GlobalTrait;
-    
+
     /** @var  SaprotanRepository */
     private $saprotanRepository;
 
@@ -100,7 +99,7 @@ class SaprotanController extends AppBaseController
     public function edit($id)
     {
         $jenis = JenisSaprotan::select('id', 'nama')->orderBy('nama')->get();
-        
+
         $saprotan = $this->saprotanRepository->findWithoutFail($id);
 
         if (empty($saprotan)) {

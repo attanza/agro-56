@@ -104,5 +104,4 @@ class Saprotan extends Model
     {
         return $this->belongsTo('App\Models\JenisSaprotan', 'jenis_id');
     }
-
 }

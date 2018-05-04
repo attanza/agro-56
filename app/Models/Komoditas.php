@@ -50,15 +50,13 @@ class Komoditas extends Model
     use SoftDeletes;
 
     public $table = 'komoditas';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nama',
         'satuan',
-        'harga'
+        'harga',
     ];
 
     /**
@@ -69,7 +67,7 @@ class Komoditas extends Model
     protected $casts = [
         'nama' => 'string',
         'satuan' => 'string',
-        'harga' => 'integer'
+        'harga' => 'integer',
     ];
 
     /**
@@ -80,8 +78,6 @@ class Komoditas extends Model
     public static $rules = [
         'nama' => 'required|max:50|unique:komoditas',
         'satuan' => 'required',
-        'harga' => 'required'
+        'harga' => 'required',
     ];
-
-    
 }

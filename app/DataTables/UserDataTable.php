@@ -19,9 +19,12 @@ class UserDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
-            ->editColumn('is_active', function($query) {
-                if($query->is_active) return '<span class="label label-success">Aktif</span>';
-                else return '<span class="label label-danger">Not Aktif</span>';
+            ->editColumn('is_active', function ($query) {
+                if ($query->is_active) {
+                    return '<span class="label label-success">Aktif</span>';
+                } else {
+                    return '<span class="label label-danger">Not Aktif</span>';
+                }
             })
             ->addColumn('action', 'users.datatables_actions')
             ->escapeColumns(['*']);

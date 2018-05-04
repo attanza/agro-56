@@ -2,18 +2,17 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\User;
 
 class NewPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
-    public $password;    
+    public $password;
 
     /**
      * Create a new message instance.
@@ -24,7 +23,6 @@ class NewPasswordMail extends Mailable
     {
         $this->user = $user;
         $this->password = $password;
-        
     }
 
     /**

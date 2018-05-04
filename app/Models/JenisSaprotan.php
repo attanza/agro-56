@@ -44,14 +44,12 @@ class JenisSaprotan extends Model
     use SoftDeletes;
 
     public $table = 'jenis_saprotans';
-    
 
     protected $dates = ['deleted_at'];
 
-
     public $fillable = [
         'nama',
-        'keterangan'
+        'keterangan',
     ];
 
     /**
@@ -61,7 +59,7 @@ class JenisSaprotan extends Model
      */
     protected $casts = [
         'nama' => 'string',
-        'keterangan' => 'string'
+        'keterangan' => 'string',
     ];
 
     /**
@@ -71,8 +69,6 @@ class JenisSaprotan extends Model
      */
     public static $rules = [
         'nama' => 'required|max:50|unique:jenis_saprotans',
-        'keterangan' => 'max:250'
+        'keterangan' => 'max:250',
     ];
-
-    
 }

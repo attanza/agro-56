@@ -75,7 +75,6 @@ class Panen extends Model
     use SoftDeletes;
 
     public $table = 'panens';
-    
 
     protected $dates = ['deleted_at', 'tangggal'];
 
@@ -88,7 +87,7 @@ class Panen extends Model
         'komoditi_id',
         'jumlah',
         'harga',
-        'pembayaran'
+        'pembayaran',
     ];
 
     /**
@@ -103,7 +102,7 @@ class Panen extends Model
         'komoditi_id' => 'integer',
         'jumlah' => 'integer',
         'harga' => 'integer',
-        'pembayaran' => 'integer'
+        'pembayaran' => 'integer',
     ];
 
     /**
@@ -118,7 +117,7 @@ class Panen extends Model
         'komoditi_id' => 'required|integer',
         'jumlah' => 'required|integer',
         'harga' => 'required|integer',
-        'pembayaran' => 'integer'
+        'pembayaran' => 'integer',
     ];
 
     public function penggarap()
@@ -130,6 +129,4 @@ class Panen extends Model
     {
         return $this->belongsTo('App\Models\Komoditas', 'komoditi_id');
     }
-
-    
 }

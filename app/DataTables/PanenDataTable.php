@@ -3,8 +3,8 @@
 namespace App\DataTables;
 
 use App\Models\Panen;
-use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class PanenDataTable extends DataTable
 {
@@ -19,13 +19,13 @@ class PanenDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable->addColumn('action', 'panens.datatables_actions')
-            ->editColumn('harga', function($query) {
+            ->editColumn('harga', function ($query) {
                 return number_format($query->harga);
             })
-            ->editColumn('pembayaran', function($query) {
+            ->editColumn('pembayaran', function ($query) {
                 return number_format($query->pembayaran);
             })
-            ->editColumn('tanggal', function($query) {
+            ->editColumn('tanggal', function ($query) {
                 return $query->tanggal->format('d M Y');
             })
             ->escapeColumns(['*']);
@@ -54,8 +54,8 @@ class PanenDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
-                'dom'     => 'Bfrtip',
-                'order'   => [[0, 'desc']],
+                'dom' => 'Bfrtip',
+                'order' => [[0, 'desc']],
                 'buttons' => [
                     'create',
                     'export',
@@ -78,17 +78,17 @@ class PanenDataTable extends DataTable
             [
                 "name" => "penggarap_id",
                 "title" => "Penggarap",
-                "data" => "penggarap.nama"
+                "data" => "penggarap.nama",
             ],
             [
                 "name" => "komoditi_id",
                 "title" => "Komoditas",
-                "data" => "komoditi.nama"
+                "data" => "komoditi.nama",
             ],
             'tanggal',
             'jumlah',
             'harga',
-            'pembayaran'
+            'pembayaran',
         ];
     }
 
