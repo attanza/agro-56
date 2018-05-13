@@ -150,7 +150,7 @@ class JenisSaprotanController extends AppBaseController
 
         $this->jenisSaprotanRepository->delete($id);
 
-        Flash::success('Jenis Saprotan deleted successfully.');
+        Flash::success(config('agro.form_delete_success'));
 
         return redirect(route('jenisSaprotans.index'));
     }

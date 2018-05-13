@@ -47,33 +47,20 @@ class UserTest extends TestCase
     }
 
     /**
-     * Show User Page
+     * Create User Page
      * @group Users
      */
 
-    public function test_authorized_user_can_see_show_user_page()
+    public function test_user_can_access_create_page()
     {
         $user = User::find(1);
         $response = $this->actingAs($user)
-            ->get('/users/' . $user->id);
+            ->get('/users/create');
         $response->assertStatus(200);
     }
 
     /**
-     * User List Test
-     * @group Users
-     */
-
-    public function test_authorized_user_see_user_list()
-    {
-        $user = User::find(1);
-        $response = $this->actingAs($user, 'api');
-        $response = $this->json('POST', '/api/user-list', $this->paginateData());
-        $response->assertStatus(200);
-    }
-
-    /**
-     * Add User Test
+     * Post Add User Test
      * @group Users
      */
 
@@ -82,9 +69,13 @@ class UserTest extends TestCase
         Mail::fake();
         $postData = $this->postData();
         $user = User::find(1);
-        $response = $this->actingAs($user, 'api');
-        $response = $this->json('POST', '/api/user', $postData);
-        $response->assertStatus(200);
+        $response = $this->actingAs($user)
+            ->post('/users', $postData);
+        // $this->assertDatabaseHas('users', [
+        //     'email' => $postData['email']
+        // ]);
+        // $response->assertSessionHas("success", config('agro.form_create_success'));
+        $response->assertRedirect('/users');
         // $password = str_random(6);
         // Mail::assertQueued(NewPasswordMail::class, function ($mail) use ($user, $password) {
         //     return $mail->user->id === $user->id;

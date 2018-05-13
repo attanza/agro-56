@@ -29,7 +29,7 @@
   <li class="{{ Request::is('penggaraps*') || Request::is('pasangans*') ? 'active' : '' }} treeview">
     <a href="#">
       <i class="fa fa-users"></i>
-      <span>Penggarap</span>
+      <span>Petani</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
@@ -83,4 +83,7 @@
     </a>
   </li>
 
-</ul>
+</ul><li class="{{ Request::is('lahanGarapans*') ? 'active' : '' }}">
+    <a href="{!! route('lahanGarapans.index') !!}"><i class="fa fa-edit"></i><span>Lahan Garapans</span></a>
+</li>
+

@@ -166,6 +166,12 @@ class Penggarap extends Model
         return $this->hasOne('App\Models\Pasangan');
     }
 
+    public function lahan()
+    {
+        return $this->hasOne('App\Models\LahanGarapan');
+    }
+
+
     public function getPhotoAttribute($value)
     {
         if ($value == null) {

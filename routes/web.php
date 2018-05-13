@@ -24,13 +24,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('panens', 'PanenController');
 
+    Route::resource('lahanGarapans', 'LahanGarapanController');
+
     Route::get('profile', 'ProfileController@index')->name('profile.index');
     Route::group(['middleware' => 'own'], function () {
         Route::get('profile/{id}/edit', 'ProfileController@edit')->name('profile.edit');
         Route::put('profile/{id}', 'ProfileController@update')->name('profile.update');
         Route::get('profile/change-password/{id}', 'ProfileController@changePasswordForm')->name('profile.change-password');
         Route::put('profile/change-password/{id}', 'ProfileController@updatePassword')->name('profile.update-password');
-        
+
     });
 
 });
