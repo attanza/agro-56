@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('panens', 'PanenController');
 
     Route::resource('lahanGarapans', 'LahanGarapanController');
+    Route::put('/lahanGarapans/location/{id}', 'LahanGarapanController@saveLocation');   
 
     Route::get('profile', 'ProfileController@index')->name('profile.index');
     Route::group(['middleware' => 'own'], function () {
@@ -35,10 +36,4 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
-});
-
-Route::get('/mailable', function () {
-    $user = App\User::find(1);
-    $password = str_random(6);
-    return new App\Mail\ResetPasswordMail($user, $password);
 });

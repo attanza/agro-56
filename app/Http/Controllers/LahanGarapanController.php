@@ -10,6 +10,7 @@ use App\Models\Penggarap;
 use App\Repositories\LahanGarapanRepository;
 use App\Traits\GlobalTrait;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class LahanGarapanController extends AppBaseController
@@ -98,6 +99,8 @@ class LahanGarapanController extends AppBaseController
      */
     public function edit($id)
     {
+        $penggaraps = Penggarap::select('id', 'nama')->doesntHave('lahan')->orderBy('nama')->get();
+        
         $lahanGarapan = $this->lahanGarapanRepository->findWithoutFail($id);
 
         if (empty($lahanGarapan)) {
@@ -106,7 +109,10 @@ class LahanGarapanController extends AppBaseController
             return redirect(route('lahanGarapans.index'));
         }
 
-        return view('lahan_garapans.edit')->with('lahanGarapan', $lahanGarapan);
+        return view('lahan_garapans.edit')->with([
+            'lahanGarapan' => $lahanGarapan,
+            'penggaraps' => $penggaraps
+        ]);
     }
 
     /**
@@ -159,5 +165,26 @@ class LahanGarapanController extends AppBaseController
         Flash::success(config('agro.form_delete_success'));
 
         return redirect(route('lahanGarapans.index'));
+    }
+
+    public function saveLocation(Request $request, $id)
+    {
+        $request->validate([
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+        ]);
+
+        $lahanGarapan = $this->lahanGarapanRepository->findWithoutFail($id);
+        if (empty($lahanGarapan)) {
+            return response()->json(['message' => 'Lahan Garapan tidak ditemukan'], 400);
+        }
+
+        $lahanGarapan = $this->lahanGarapanRepository->update($request->all(), $id);
+
+        // Save Activity
+        $activity = "Menyimpan data lokasi $lahanGarapan->nama";
+        $this->saveActivity($request, $activity);
+        return response()->json(['message' => 'Lokasi Lahan disimpan'], 200);
+
     }
 }

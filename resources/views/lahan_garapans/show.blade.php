@@ -11,9 +11,19 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('lahan_garapans.show_fields')
-                    <a href="{!! route('lahanGarapans.index') !!}" class="btn btn-default">Back</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{!! route('lahanGarapans.index') !!}" class="btn btn-default">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        <a href="{{ route('lahanGarapans.edit', $lahanGarapan->id) }}" class="btn btn-warning pull-right">
+                            <i class="fa fa-pencil"></i>                        
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        @include('lahan_garapans.map')
     </div>
 @endsection

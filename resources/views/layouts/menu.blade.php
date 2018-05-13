@@ -46,6 +46,9 @@
 
     </ul>
   </li>
+  <li class="{{ Request::is('lahanGarapans*') ? 'active' : '' }}">
+      <a href="{!! route('lahanGarapans.index') !!}"><i class="fa fa-map"></i><span>Lahan Garapan</span></a>
+  </li>
   <li class="{{ Request::is('komoditas*') || Request::is('jenisSaprotans*') || Request::is('saprotans*') ? 'active' : '' }} treeview">
     <a href="#">
       <i class="fa fa-pagelines"></i>
@@ -83,7 +86,6 @@
     </a>
   </li>
 
-</ul><li class="{{ Request::is('lahanGarapans*') ? 'active' : '' }}">
-    <a href="{!! route('lahanGarapans.index') !!}"><i class="fa fa-edit"></i><span>Lahan Garapans</span></a>
-</li>
+</ul>
+
 
